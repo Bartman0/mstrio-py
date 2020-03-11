@@ -44,7 +44,7 @@ class Connection(object):
     __VRCH ="11.1.0400"
 
     def __init__(self, base_url=None, username=None, password=None, project_name=None, project_id=None,
-                 login_mode=1, ssl_verify=True):
+                 login_mode=1, ssl_verify=True, auth=None):
         """
         Establishes a connection with MicroStrategy REST API
 
@@ -72,6 +72,7 @@ class Connection(object):
             self.project_name = project_name
         self.login_mode = login_mode
         self.ssl_verify = ssl_verify
+        self.auth = auth
         self.__web_version = None
         self.__iserver_version = None
 
