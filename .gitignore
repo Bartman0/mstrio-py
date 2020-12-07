@@ -106,3 +106,5 @@ venv.bak/
 *.pyc
 *.pyc
 *.iml
+
+tests/api/test_system_administration.py

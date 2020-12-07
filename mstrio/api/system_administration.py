@@ -10,9 +10,9 @@ def iserver_trustrelationship(connection, verbose=False):
         Complete HTTP response object
     """
 
-    headers = {'X-MSTR-AuthToken': connection.auth_token}
+    headers = {'Content-Type': 'application/json', 'X-MSTR-AuthToken': connection.auth_token}
     response = requests.get(connection.base_url + '/admin/restServerSettings/iServer/trustRelationship',
-                            headers=headers,
+                            headers=headers, auth=connection.auth,
                             cookies=connection.cookies,
                             verify=connection.ssl_verify)
 
@@ -37,9 +37,9 @@ def iserver_trustrelationship_set(connection, body={}, verbose=False):
     }
     """
 
-    headers = {'X-MSTR-AuthToken': connection.auth_token}
+    headers = {'Content-Type': 'application/json', 'X-MSTR-AuthToken': connection.auth_token}
     response = requests.post(url=connection.base_url + '/admin/restServerSettings/iServer/trustRelationship',
-                             headers=headers,
+                             headers=headers, auth=connection.auth,
                              cookies=connection.cookies,
                              json=body,
                              verify=connection.ssl_verify)
@@ -59,9 +59,9 @@ def iserver_trustrelationship_delete(connection, verbose=False):
         Complete HTTP response object
     """
 
-    headers = {'X-MSTR-AuthToken': connection.auth_token}
+    headers = {'Content-Type': 'application/json', 'X-MSTR-AuthToken': connection.auth_token}
     response = requests.delete(connection.base_url + '/admin/restServerSettings/iServer/trustRelationship',
-                               headers=headers,
+                               headers=headers, auth=connection.auth,
                                cookies=connection.cookies,
                                verify=connection.ssl_verify)
 
@@ -80,9 +80,9 @@ def restserversettings_auth(connection, verbose=False):
         Complete HTTP response object
     """
 
-    headers = {'X-MSTR-AuthToken': connection.auth_token}
+    headers = {'Content-Type': 'application/json', 'X-MSTR-AuthToken': connection.auth_token}
     response = requests.get(connection.base_url + '/api/admin/restServerSettings/auth',
-                            headers=headers,
+                            headers=headers, auth=connection.auth,
                             cookies=connection.cookies,
                             verify=connection.ssl_verify)
 
@@ -122,9 +122,9 @@ def restserversettings_auth_update(connection, body={}, verbose=False):
     }
     """
 
-    headers = {'X-MSTR-AuthToken': connection.auth_token}
+    headers = {'Content-Type': 'application/json', 'X-MSTR-AuthToken': connection.auth_token}
     response = requests.post(url=connection.base_url + '/api/admin/restServerSettings/auth',
-                             headers=headers,
+                             headers=headers, auth=connection.auth,
                              cookies=connection.cookies,
                              json=body,
                              verify=connection.ssl_verify)

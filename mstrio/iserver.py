@@ -6,10 +6,8 @@ class WebserverPath(object):
 
     Creates a webserver path object which is used to set the trust relationship value.
     """
-    self._webserver_path = None
-
     def __init__(self, webserver_path):
-        self._webserver_path = webserver_path
+        self._webserver_path = webserver_path or ""
 
     def body(self):
         return {"webServerPath": self._webserver_path}
@@ -20,10 +18,7 @@ class Trust(object):
     Creates a trust object which is used in subsequent requests and manages the Intelligence Server
     trust relationship setting.
     """
-    self._connection = None
-    self._webserver_path = None
-
-    def __init__(self, connection, webserver_path):
+    def __init__(self, connection, webserver_path=None):
         self._connection = connection
         self._webserver_path = WebserverPath(webserver_path)
     
@@ -37,6 +32,8 @@ class Trust(object):
         else:
             print("MicroStrategy Intelligence trust relationship was retrieved.")
 
+        return response
+
     def set_relationship(self):
         """Set the trust relationship."""
         response = system_administration.iserver_trustrelationship_set(connection=self._connection, body=self._webserver_path.body())
@@ -47,6 +44,8 @@ class Trust(object):
         else:
             print("MicroStrategy Intelligence trust relationship was set.")
 
+        return response
+
     def delete_relationship(self):
         """Delete the existing trust relationship."""
         response = system_administration.iserver_trustrelationship_delete(connection=self._connection)
@@ -56,6 +55,8 @@ class Trust(object):
             self.__response_handler(response=response, msg=msg)
         else:
             print("MicroStrategy Intelligence trust relationship was deleted.")
+
+        return response
 
     @staticmethod
     def __response_handler(response, msg):
